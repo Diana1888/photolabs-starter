@@ -5,15 +5,16 @@ import '../styles/HomeRoute.scss';
 import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 
-const HomeRoute = () => {
+const HomeRoute = (props) => {
   const [countLikes, setCountLikes] = useState(0);
+  const {handleModalDetails} = props;
 
 
 
   return (
     <div className="home-route">
       <TopNavigation isFavPhotoExist={countLikes}/>
-      <PhotoList countLikes={countLikes} setCountLikes={setCountLikes}/>
+      <PhotoList handleModalDetails={handleModalDetails} countLikes={countLikes} setCountLikes={setCountLikes}/>
     </div>
   );
 };

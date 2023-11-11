@@ -2,14 +2,20 @@ import React, { useState } from "react";
 
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
+import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 
 
 const PhotoListItem = (props) => {
 
   
-  const { photo, countLikes, setCountLikes} = props;
+  const { photo, countLikes, setCountLikes, handleModalDetails} = props;
   const { id, urls, user, location } = photo;
+
+  const handleShowModal = () => {
+    handleModalDetails()
+  }
+  
 
   return (
 
@@ -17,7 +23,7 @@ const PhotoListItem = (props) => {
       <PhotoFavButton 
       key={id} 
       photo={photo} countLikes={countLikes} setCountLikes={setCountLikes}/>
-      <img className="photo-list__image" src={urls.regular} alt="image" />
+      <img className="photo-list__image" src={urls.regular} alt="image" onClick={() => handleShowModal()}/>
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={user.profile} alt="profile" />
         <div>
