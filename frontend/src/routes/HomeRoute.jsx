@@ -9,9 +9,10 @@ const HomeRoute = () => {
   const [countLikes, setCountLikes] = useState(0);
 
 
+
   return (
     <div className="home-route">
-      <TopNavigation />
+      <TopNavigation isFavPhotoExist={countLikes}/>
       <PhotoList countLikes={countLikes} setCountLikes={setCountLikes}/>
     </div>
   );
