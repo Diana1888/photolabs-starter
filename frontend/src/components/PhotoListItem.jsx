@@ -8,7 +8,6 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 const PhotoListItem = (props) => {
 
-  
   const { photo, countLikes, setCountLikes, handleModalDetails} = props;
   const { id, urls, user, location } = photo;
 

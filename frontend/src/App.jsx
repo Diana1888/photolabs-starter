@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className="App">
     <HomeRoute handleModalDetails={handleModalDetails}/>
-    {showModal && <PhotoDetailsModal showModal={showModal} handleModalDetails={handleModalDetails}/>}
+    {showModal && <PhotoDetailsModal handleModalDetails={handleModalDetails}/>}
 
 
       {/* { Array.from(Array(3)).map((_, index) => <PhotoListItem key={index}/>) } */}
