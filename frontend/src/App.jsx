@@ -13,16 +13,23 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
+  const [countLikes, setCountLikes] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [modalPhoto, setModalPhoto] = useState(null);
 
-  const handleModalDetails = () => {
+  const handleModalDetails = (modalPhoto) => {
+    setModalPhoto(modalPhoto)
     setShowModal(!showModal)
   }
 
   return (
     <div className="App">
-    <HomeRoute handleModalDetails={handleModalDetails}/>
-    {showModal && <PhotoDetailsModal handleModalDetails={handleModalDetails}/>}
+    <HomeRoute handleModalDetails={handleModalDetails} countLikes={countLikes} setCountLikes={setCountLikes}/>
+    {showModal && <PhotoDetailsModal 
+    modalPhoto={modalPhoto} 
+    handleModalDetails={handleModalDetails}
+    countLikes={countLikes} 
+    setCountLikes={setCountLikes} />}
 
 
       {/* { Array.from(Array(3)).map((_, index) => <PhotoListItem key={index}/>) } */}

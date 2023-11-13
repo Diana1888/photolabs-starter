@@ -11,8 +11,8 @@ const PhotoListItem = (props) => {
   const { photo, countLikes, setCountLikes, handleModalDetails} = props;
   const { id, urls, user, location } = photo;
 
-  const handleShowModal = () => {
-    handleModalDetails()
+  const handleShowModal = (photo) => {
+    handleModalDetails(photo)
   }
   
 
@@ -22,7 +22,7 @@ const PhotoListItem = (props) => {
       <PhotoFavButton 
       key={id} 
       photo={photo} countLikes={countLikes} setCountLikes={setCountLikes}/>
-      <img className="photo-list__image" src={urls.regular} alt="image" onClick={() => handleShowModal()}/>
+      <img className="photo-list__image" src={urls.regular} alt="image" onClick={() => handleShowModal(photo)}/>
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={user.profile} alt="profile" />
         <div>

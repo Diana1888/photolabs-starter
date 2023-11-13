@@ -6,8 +6,7 @@ import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 
 const HomeRoute = (props) => {
-  const [countLikes, setCountLikes] = useState(0);
-  const {handleModalDetails} = props;
+  const {handleModalDetails, countLikes, setCountLikes } = props;
 
 
 
