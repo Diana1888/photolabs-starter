@@ -8,32 +8,30 @@ import TopicList from 'components/TopicList';
 import TopNavigation from 'components/TopNavigationBar';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import useApplicationData from 'hooks/useApplicationData';
 
 
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [countLikes, setCountLikes] = useState(0);
-  const [showModal, setShowModal] = useState(false);
-  const [modalPhoto, setModalPhoto] = useState(null);
+  
+  const {
+    state,
+    setPhotoSelected,
+    updateToFavPhotoIds,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
 
-  const handleModalDetails = (modalPhoto) => {
-    setModalPhoto(modalPhoto)
-    setShowModal(!showModal)
-  }
 
   return (
     <div className="App">
-    <HomeRoute handleModalDetails={handleModalDetails} countLikes={countLikes} setCountLikes={setCountLikes}/>
-    {showModal && <PhotoDetailsModal 
-    modalPhoto={modalPhoto} 
-    handleModalDetails={handleModalDetails}
-    countLikes={countLikes} 
-    setCountLikes={setCountLikes} />}
-
-
-      {/* { Array.from(Array(3)).map((_, index) => <PhotoListItem key={index}/>) } */}
-      {/* <PhotoList /> */}
+    <HomeRoute handleModalDetails={setPhotoSelected} countLikes={state.countLikes} setCountLikes={updateToFavPhotoIds}/>
+    {state.showModal && <PhotoDetailsModal 
+    modalPhoto={state.modalPhoto} 
+    handleModalDetails={setPhotoSelected}
+    countLikes={state.countLikes} 
+    setCountLikes={updateToFavPhotoIds} 
+    onClosePhotoDetailsModal={onClosePhotoDetailsModal}/>}
       </div>
   );
 };

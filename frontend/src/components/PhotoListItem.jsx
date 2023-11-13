@@ -25,11 +25,10 @@ const PhotoListItem = (props) => {
       <img className="photo-list__image" src={urls.regular} alt="image" onClick={() => handleShowModal(photo)}/>
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={user.profile} alt="profile" />
-        <div>
-          <span className="photo-list__user-info">{user.username}</span>
-          <div className="photo-list__user-info">
+        <div className="photo-list__user-info">
+          <span>{user.username}</span>
+          <br />
             <span className="photo-list__user-location ">{location.city}, {location.country}</span>
-          </div>
         </div>
       </div>
     </div>
