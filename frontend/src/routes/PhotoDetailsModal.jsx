@@ -16,7 +16,7 @@ const PhotoDetailsModal = (props) => {
       </button>
 
       <div className='photo-details-modal__images'>
-        <PhotoFavButton  state={state} photo={photo.id} toggleFav={toggleFav} favPhotos={state.favPhotos}/>
+        <PhotoFavButton  state={state} photo={photo} toggleFav={toggleFav} favPhotos={state.favPhotos}/>
         <img className='photo-details-modal__image' src={photo.urls.full} alt="full-img" />
 
         <div className='photo-details-modal__header'>
