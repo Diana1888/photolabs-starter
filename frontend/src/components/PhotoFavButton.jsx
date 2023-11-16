@@ -4,26 +4,18 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
-  const { countLikes, setCountLikes } = props;
-  const [favorite, setFavorite] = useState(false);
+  const { toggleFav, photo, state} = props;
+  const likedPhoto = state && state.favPhotos.includes(photo);
 
-  const handleFavButton = () => {
-    setFavorite(!favorite);
+  const handleToggleButton = () => {
+    toggleFav(photo);
   };
-
-  const handleToggleBtn = () => {
-    favorite ?
-    setCountLikes(countLikes - 1):
-    setCountLikes(countLikes + 1);
-
-    handleFavButton();
-  }
 
 
   return (
-    <div className="photo-list__fav-icon" onClick={handleToggleBtn} >
+    <div className="photo-list__fav-icon" onClick={handleToggleButton} >
       <div className="photo-list__fav-icon-svg">
-        <FavIcon selected={favorite}/>
+        <FavIcon selected={likedPhoto}/>
      </div>
      </div>
 

@@ -7,16 +7,16 @@ import photos from "mocks/photos";
 
 
 const PhotoList = (props) => {
-  const {  countLikes, setCountLikes, showModal, handleModalDetails } = props;
+  const {  state, toggleFav, showModal, handleModalDetails} = props;
 
   return (
     <ul className="photo-list">
       {photos.map((photo) => (
         <PhotoListItem 
+        state={state}
         key={photo.id} 
         photo={photo} 
-        countLikes={countLikes} 
-        setCountLikes={setCountLikes}
+        toggleFav={toggleFav}
         showModal={showModal}
         handleModalDetails={handleModalDetails}/>
       ))}

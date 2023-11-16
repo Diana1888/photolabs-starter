@@ -19,19 +19,19 @@ const App = () => {
     state,
     setPhotoSelected,
     updateToFavPhotoIds,
-    onClosePhotoDetailsModal,
+    onClosePhotoDetailsModal
   } = useApplicationData();
 
 
   return (
     <div className="App">
-    <HomeRoute handleModalDetails={setPhotoSelected} countLikes={state.countLikes} setCountLikes={updateToFavPhotoIds}/>
+    <HomeRoute state={state} handleModalDetails={setPhotoSelected}  toggleFav={updateToFavPhotoIds}/>
     {state.showModal && <PhotoDetailsModal 
-    modalPhoto={state.modalPhoto} 
+    state={state}
+    photo={state.modalPhoto} 
     handleModalDetails={setPhotoSelected}
-    countLikes={state.countLikes} 
-    setCountLikes={updateToFavPhotoIds} 
-    onClosePhotoDetailsModal={onClosePhotoDetailsModal}/>}
+    toggleFav={updateToFavPhotoIds} 
+    closeModal={onClosePhotoDetailsModal}/>}
       </div>
   );
 };
