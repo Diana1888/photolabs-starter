@@ -7,6 +7,7 @@ export const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   CLOSE_MODAL: 'CLOSE_MODAL',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
 }
 
@@ -37,7 +38,11 @@ function reducer(state, action) {
           ...state, 
           modalPhoto: action.payload.photoData, showModal: true
       };
-
+      case ACTIONS.GET_PHOTOS_BY_TOPICS:
+        return { 
+          ...state, 
+          photoData: action.payload,
+      };
       case ACTIONS.CLOSE_MODAL:
         return {
           ...state,
@@ -64,14 +69,19 @@ const useApplicationData = () => {
   useEffect(() => {
     fetch('/api/photos')
     .then((response) => response.json())
-    .then((data) => dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: data}) )
-  }, [])
+    .then((data) => dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: data}));
 
-  useEffect(() => {
     fetch('/api/topics')
     .then((response) => response.json())
     .then((data) => dispatch({type: ACTIONS.SET_TOPIC_DATA, payload: data}) )
-  }, [])
+  }, []);
+
+
+  const selectedTopic = (topicId) => {
+    fetch(`/api/topics/photos/${topicId}`)
+    .then((response) => response.json())
+    .then((data) => dispatch({type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data}));
+  }
   
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -99,7 +109,8 @@ const useApplicationData = () => {
       state,
       updateToFavPhotoIds,
       setPhotoSelected,
-      onClosePhotoDetailsModal
+      onClosePhotoDetailsModal,
+      selectedTopic
     }
 }
 
