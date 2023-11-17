@@ -8,6 +8,8 @@ import PhotoFavButton from 'components/PhotoFavButton';
 const PhotoDetailsModal = (props) => {
   const { state, photo, toggleFav, closeModal } = props;
 
+  const similarPhotos = photo.similar_photos;
+
   return (
     <div className="photo-details-modal">
 
@@ -38,6 +40,7 @@ const PhotoDetailsModal = (props) => {
         <div className='photo-details-modal__top-bar'>
         <PhotoList 
         state={state}
+        photo={similarPhotos}
         favPhotos={state.favPhotos}
         toggleFav={toggleFav}/>
         </div>

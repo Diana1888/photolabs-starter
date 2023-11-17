@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useReducer, useEffect } from "react";
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -21,6 +21,16 @@ function reducer(state, action) {
         return { 
           ...state, 
           favPhotos: state.favPhotos.filter((id) => id !== action.payload.photoId)
+      };
+      case ACTIONS.SET_PHOTO_DATA:
+        return { 
+          ...state, 
+          photoData: action.payload,
+      };
+      case ACTIONS.SET_TOPIC_DATA:
+        return { 
+          ...state, 
+          topicData: action.payload,
       };
       case ACTIONS.SELECT_PHOTO:
         return { 
@@ -46,8 +56,22 @@ const useApplicationData = () => {
   const initialState = {
     favPhotos: [],
     showModal: false,
-    modalPhoto: null
+    modalPhoto: null,
+    photoData: [],
+    topicData: []
   }
+
+  useEffect(() => {
+    fetch('/api/photos')
+    .then((response) => response.json())
+    .then((data) => dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: data}) )
+  }, [])
+
+  useEffect(() => {
+    fetch('/api/topics')
+    .then((response) => response.json())
+    .then((data) => dispatch({type: ACTIONS.SET_TOPIC_DATA, payload: data}) )
+  }, [])
   
 
   const [state, dispatch] = useReducer(reducer, initialState);

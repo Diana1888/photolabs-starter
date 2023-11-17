@@ -25,7 +25,7 @@ const App = () => {
 
   return (
     <div className="App">
-    <HomeRoute state={state} handleModalDetails={setPhotoSelected}  toggleFav={updateToFavPhotoIds}/>
+    <HomeRoute state={state} photo={state.photoData} topic={state.topicData} handleModalDetails={setPhotoSelected}  toggleFav={updateToFavPhotoIds}/>
     {state.showModal && <PhotoDetailsModal 
     state={state}
     photo={state.modalPhoto} 
