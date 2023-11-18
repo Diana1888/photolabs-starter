@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 
 import '../styles/HomeRoute.scss';
 import TopNavigation from 'components/TopNavigationBar';
@@ -10,7 +9,9 @@ const HomeRoute = (props) => {
 
   return (
     <div className="home-route">
-      <TopNavigation topic={topic} isFavPhotoExist={state.favPhotos.length > 0} selectedTopic={selectedTopic} />
+      <TopNavigation topic={topic}
+        isFavPhotoExist={state.favPhotos.length > 0} //Check if favPhotos array has photo 
+        selectedTopic={selectedTopic} />
       <PhotoList photos={photos}
         handleModalDetails={handleModalDetails}
         toggleFav={toggleFav}
