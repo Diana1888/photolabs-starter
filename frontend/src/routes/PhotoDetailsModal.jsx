@@ -6,9 +6,10 @@ import PhotoList from 'components/PhotoList';
 import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = (props) => {
-  const { state, photo, toggleFav, closeModal } = props;
+  const { photos, modalPhoto, toggleFav, closeModal, favPhotos } = props;
 
-  const similarPhotos = photo.similar_photos;
+  const similarPhotos = Object.values(modalPhoto.similar_photos);
+
 
   return (
     <div className="photo-details-modal">
@@ -18,19 +19,16 @@ const PhotoDetailsModal = (props) => {
       </button>
 
       <div className='photo-details-modal__images'>
-        <PhotoFavButton  state={state} photo={photo} toggleFav={toggleFav} favPhotos={state.favPhotos}/>
-        <img className='photo-details-modal__image' src={photo.urls.full} alt="full-img" />
-
+        <PhotoFavButton photo={modalPhoto} toggleFav={toggleFav} favPhotos={favPhotos} />
+        <img className='photo-details-modal__image' src={modalPhoto.urls.full} alt="full-img" />
         <div className='photo-details-modal__header'>
           <div className="photo-details-modal__photographer-details">
-            <img className="photo-details-modal__photographer-profile " src={photo.user.profile} alt="profile" />
+            <img className="photo-details-modal__photographer-profile " src={modalPhoto.user.profile} alt="profile" />
             <div className="photo-details-modal__photographer-info">
-              <span >{photo.user.username}</span>
+              <span >{modalPhoto.user.username}</span>
               <br />
-              <span className="photo-details-modal__photographer-location ">{photo.location.city}, {photo.location.country}</span>
-
+              <span className="photo-details-modal__photographer-location ">{modalPhoto.location.city}, {modalPhoto.location.country}</span>
             </div>
-
           </div>
         </div>
       </div>
@@ -38,11 +36,15 @@ const PhotoDetailsModal = (props) => {
       <div className='photo-details-modal__images'>
         <p className='photo-details-modal__header'>Similar Photos</p>
         <div className='photo-details-modal__top-bar'>
-        <PhotoList 
-        state={state}
-        photo={similarPhotos}
-        favPhotos={state.favPhotos}
-        toggleFav={toggleFav}/>
+          {similarPhotos.map((similarPhoto) => (
+                      <PhotoList
+                      key={similarPhoto.id}
+                      photos={photos.filter((photo) => similarPhoto.id === photo.id)}
+                      favPhotos={favPhotos}
+                      toggleFav={toggleFav}
+                    />
+          ))}
+
         </div>
       </div>
     </div>

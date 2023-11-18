@@ -74,14 +74,15 @@ const useApplicationData = () => {
     fetch('/api/topics')
     .then((response) => response.json())
     .then((data) => dispatch({type: ACTIONS.SET_TOPIC_DATA, payload: data}) )
-  }, []);
-
+  }, [])
 
   const selectedTopic = (topicId) => {
     fetch(`/api/topics/photos/${topicId}`)
     .then((response) => response.json())
     .then((data) => dispatch({type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data}));
   }
+
+
   
 
   const [state, dispatch] = useReducer(reducer, initialState);

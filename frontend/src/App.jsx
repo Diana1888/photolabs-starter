@@ -24,18 +24,22 @@ const App = () => {
   } = useApplicationData();
 
 
+
   return (
     <div className="App">
     <HomeRoute 
     state={state} 
-    photo={state.photoData} 
+    photos={state.photoData} 
     topic={state.topicData} 
+    favPhotos={state.favPhotos}
     handleModalDetails={setPhotoSelected}  
     toggleFav={updateToFavPhotoIds}
     selectedTopic={selectedTopic}/>
     {state.showModal && <PhotoDetailsModal 
     state={state}
-    photo={state.modalPhoto} 
+    photos={state.photoData}
+    modalPhoto={state.modalPhoto} 
+    favPhotos={state.favPhotos}
     handleModalDetails={setPhotoSelected}
     toggleFav={updateToFavPhotoIds} 
     closeModal={onClosePhotoDetailsModal}/>}

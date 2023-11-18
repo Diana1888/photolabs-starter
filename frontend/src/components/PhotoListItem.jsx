@@ -8,7 +8,7 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 const PhotoListItem = (props) => {
 
-  const { state, photo, toggleFav, handleModalDetails, favPhotos} = props;
+  const { photo, toggleFav, handleModalDetails, favPhotos} = props;
   const { id, urls, user, location } = photo;
 
   const handleShowModal = (photo) => {
@@ -21,7 +21,6 @@ const PhotoListItem = (props) => {
     <div className="photo-list__item">
       <PhotoFavButton 
       key={id} 
-      state={state}
       favPhotos={favPhotos}
       photo={photo} toggleFav={toggleFav}/>
       <img className="photo-list__image" src={urls.regular} alt="image" onClick={() => handleShowModal(photo)}/>

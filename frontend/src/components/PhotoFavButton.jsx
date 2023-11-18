@@ -1,11 +1,13 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
-  const { toggleFav, photo, state} = props;
-  const likedPhoto = state && state.favPhotos.includes(photo);
+  const { toggleFav, photo, favPhotos } = props;
+  const likedPhoto = favPhotos.includes(photo);
+
+
 
   const handleToggleButton = () => {
     toggleFav(photo);
@@ -15,9 +17,9 @@ function PhotoFavButton(props) {
   return (
     <div className="photo-list__fav-icon" onClick={handleToggleButton} >
       <div className="photo-list__fav-icon-svg">
-        <FavIcon selected={likedPhoto}/>
-     </div>
-     </div>
+        <FavIcon selected={likedPhoto} />
+      </div>
+    </div>
 
   );
 }
