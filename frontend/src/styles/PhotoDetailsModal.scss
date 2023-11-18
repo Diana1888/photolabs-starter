@@ -6,7 +6,7 @@
   left: 50%;
   transform: translate(-50%, -40%);
   height: 80%;
-  width: 55%;
+  width: 60%;
   overflow-y: scroll;
   border-radius: 12px;
 }
@@ -36,6 +36,7 @@
 
 .photo-details-modal__top-bar {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   margin: 16px;

@@ -31,10 +31,11 @@ const PhotoDetailsModal = (props) => {
             </div>
           </div>
         </div>
+        <p className='photo-details-modal__header'>Similar Photos</p>
       </div>
 
-      <div className='photo-details-modal__images'>
-        <p className='photo-details-modal__header'>Similar Photos</p>
+
+
         <div className='photo-details-modal__top-bar'>
           {similarPhotos.map((similarPhoto) => (
                       <PhotoList
@@ -45,7 +46,6 @@ const PhotoDetailsModal = (props) => {
                     />
           ))}
 
-        </div>
       </div>
     </div>
 
