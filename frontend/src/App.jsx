@@ -3,6 +3,7 @@ import './App.scss';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import useApplicationData from 'hooks/useApplicationData';
+import ModalLikedPhotos from 'routes/ModalLikePhotos';
 
 
 const App = () => {
@@ -11,7 +12,8 @@ const App = () => {
     setPhotoSelected,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
-    selectedTopic
+    selectedTopic,
+    displayLikedPhotos
   } = useApplicationData();
 
   return (
@@ -23,7 +25,8 @@ const App = () => {
         favPhotos={state.favPhotos}
         handleModalDetails={setPhotoSelected}
         toggleFav={updateToFavPhotoIds}
-        selectedTopic={selectedTopic} />
+        selectedTopic={selectedTopic} 
+        displayLikedPhotos={displayLikedPhotos}/>
       {state.showModal && <PhotoDetailsModal
         state={state}
         photos={state.photoData}
@@ -32,6 +35,10 @@ const App = () => {
         handleModalDetails={setPhotoSelected}
         toggleFav={updateToFavPhotoIds}
         closeModal={onClosePhotoDetailsModal} />}
+        {state.showAllFav && <ModalLikedPhotos 
+        favPhotos={state.favPhotos}
+        closeModal={onClosePhotoDetailsModal}
+        />}
     </div>
   );
 };

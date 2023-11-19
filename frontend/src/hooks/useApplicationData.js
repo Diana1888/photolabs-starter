@@ -8,6 +8,7 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   CLOSE_MODAL: 'CLOSE_MODAL',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  DISPLAY_LIKED_PHOTOS: 'DISPLAY_LIKED_PHOTOS'
 };
 
 function reducer(state, action) {
@@ -45,8 +46,15 @@ function reducer(state, action) {
     case ACTIONS.CLOSE_MODAL:
       return {
         ...state,
-        showModal: false
+        showModal: false,
+        showAllFav: false
       };
+      case ACTIONS.DISPLAY_LIKED_PHOTOS:
+        console.log('Reducer: Display Liked Photos');
+        return {
+          ...state,
+          showAllFav: true,
+        };
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -62,7 +70,8 @@ const useApplicationData = () => {
     showModal: false,
     modalPhoto: null,
     photoData: [],
-    topicData: []
+    topicData: [],
+    showAllFav: false
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -110,6 +119,11 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photoData } });
   };
 
+  const displayLikedPhotos = () => {
+    // Function to show modal with liked photos
+    dispatch({ type: ACTIONS.DISPLAY_LIKED_PHOTOS });
+  };
+
   const onClosePhotoDetailsModal = () => {
     //Function to close modal 
     dispatch({ type: ACTIONS.CLOSE_MODAL });
@@ -121,7 +135,8 @@ const useApplicationData = () => {
     updateToFavPhotoIds,
     setPhotoSelected,
     onClosePhotoDetailsModal,
-    selectedTopic
+    selectedTopic,
+    displayLikedPhotos
   };
 };
 
