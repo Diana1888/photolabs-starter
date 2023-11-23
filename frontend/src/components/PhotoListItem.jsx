@@ -3,7 +3,7 @@ import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-
+// Component to display photo details
 const PhotoListItem = (props) => {
   const { photo, toggleFav, handleModalDetails, favPhotos } = props;
   const { id, urls, user, location } = photo;

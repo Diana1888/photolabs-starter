@@ -3,6 +3,7 @@ import React from "react";
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
+//Component to display a list of topics
 const TopicList = (props) => {
   const { topics, selectedTopic } = props;
 

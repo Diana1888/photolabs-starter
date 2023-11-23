@@ -4,6 +4,7 @@ import '../styles/TopNavigationBar.scss';
 import TopicList from './TopicList';
 import FavBadge from './FavBadge';
 
+//Component to display navbar
 const TopNavigation = (props) => {
   const { isFavPhotoExist, topic, selectedTopic } = props;
   return (

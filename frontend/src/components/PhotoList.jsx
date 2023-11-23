@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
+//// PhotoList component to display a list of photos
 const PhotoList = (props) => {
   const { toggleFav, handleModalDetails, photos, favPhotos } = props;
 

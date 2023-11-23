@@ -3,6 +3,7 @@ import FavIcon from './FavIcon';
 
 import '../styles/FavBadge.scss';
 
+//Component to display like
 const FavBadge = ({ isFavPhotoExist }) => {
   //If favPhotos array has photo then display alert
   return (
