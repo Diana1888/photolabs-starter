@@ -6,10 +6,10 @@ import '../styles/PhotoFavButton.scss';
 function PhotoFavButton(props) {
   const { toggleFav, photo, favPhotos } = props;
   // Check if photo is in array of favPhotos
-  const likedPhoto = favPhotos.includes(photo);
+  const likedPhoto = favPhotos.includes(photo.id);
 
   const handleToggleButton = () => {
-    toggleFav(photo);
+    toggleFav(photo.id);
   };
 
   return (
